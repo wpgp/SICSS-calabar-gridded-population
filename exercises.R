@@ -1,12 +1,14 @@
 library(tidyverse)
 library(tmap)
+library(terra)
+library(sf)
 
 tmap_mode('view')
 tmap_options(check.and.fix = TRUE) 
 sf::sf_use_s2(F)
 
 # Defining the study area -------------------------------------------------
-library(sf)
+
 
 lga <- st_read('data/GRID3_Nigeria_-_Local_Government_Area_Boundaries/GRID3_Nigeria_-_Local_Government_Area_Boundaries.shp')
 
@@ -52,12 +54,14 @@ tm_shape(health_facilities_Calabar)+
 
 
 # EXERCISE: How many health facilities are offering tertiary services in Calabar South?
+table(health_facilities_Calabar$type)
 
 # EXERCISE: What are the services that health facilities are offering in Calabar South?
+table(health_facilities_Calabar$category)
 
 # Discovering the gridded population dataset ------------------------------
 
-library(terra)
+
 
 pop <- rast('data/NGA_population_v2_0_gridded/NGA_population_v2_0_gridded.tif')
 
